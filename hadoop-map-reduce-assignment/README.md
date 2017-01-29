@@ -5,7 +5,7 @@ Assignment 1: Run the wordcount.jar program with a bigger dataset like the file 
 
 Steps:
 
-##### Make required directory in HDFS
+#### Make required directory in HDFS
 $hadoop fs -mkdir /user/training/wordcount/input
 
 ### Copy Shakespear.txt to HDFS
