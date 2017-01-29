@@ -16,6 +16,7 @@ hadoop jar wordcount.jar WordCount /user/training/wordcount/input/Shakespeare.tx
 
 ### Verify the output of above execution
 hadoop fs -ls -R /user/training/wordcount/output/shakespeare_full_output
+
 hadoop fs -cat /user/training/wordcount/output/shakespeare_full_output/part-r-00000
 
 
@@ -32,7 +33,9 @@ hadoop jar wordcount.jar WordCount -Dmapred.reduce.tasks=2 /user/training/wordco
 
 ### Verify the output of above execution
 hadoop fs -ls -R /user/training/wordcount/output/shakespeare_full_output_mul_reducer
+
 hadoop fs -cat /user/training/wordcount/output/shakespeare_full_output_mul_reducer/part-r-00000
+
 hadoop fs -cat /user/training/wordcount/output/shakespeare_full_output_mul_reducer/part-r-00001
 
 
@@ -51,6 +54,7 @@ hadoop jar wordcount.jar WordCountGreatherThenHundred /user/training/wordcount/i
 
 ### Verify the output of above execution
 hadoop fs -ls -R /user/training/wordcount/output/shakespeare_grt_then_100_output
+
 hadoop fs -cat /user/training/wordcount/output/shakespeare_grt_then_100_output/part-r-00000
 
 
@@ -71,6 +75,7 @@ hadoop jar wordcount.jar com.intellipaat.training.hadoop.LineIndexer /user/train
 
 ### Verify the output of above execution
 hadoop fs -ls -R /user/training/wordcount/output/shakespeare_line_indexer
+
 hadoop fs -cat /user/training/wordcount/output/shakespeare_line_indexer/part-r-00000
 
 
@@ -82,9 +87,13 @@ sudo yum install hive
 
 ### Pre-requisite before using hive
 sudo -u hdfs hadoop fs -mkdir /user/hive/warehouse
+
 hadoop fs -chmod g+w /tmp
+
 sudo -u hdfs hadoop fs -chmod g+w /user/hive/warehouse
+
 sudo -u hdfs hadoop fs -chown -R training /user/hive/warehouse
+
 sudo chmod 777 /var/lib/hive/metastore
 
 ### Go to HIVE shell
@@ -124,6 +133,7 @@ sudo yum install pig
 
 ### Copy weblogs directory into HDFS
 hadoop fs -mkdir /user/training/weblogs/input
+
 hadoop fs -put /home/training/Downloads/intellipaat_hadoop_training/day_3/intellipaat/weblogs_parse.txt /user/training/weblogs/input
 
 cd /home/training/Downloads/intellipaat_hadoop_training/day_3/intellipaat/pig_programs
