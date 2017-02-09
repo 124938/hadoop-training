@@ -3,6 +3,8 @@ Assignment-1
 
 Assignment 1: Run the wordcount.jar program with a bigger dataset like the file ‘Shakespeare.zip’
 
+TEST
+
 Steps:
 
 #### => Make required directory in HDFS
