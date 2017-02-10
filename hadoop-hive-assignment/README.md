@@ -63,6 +63,9 @@ Hive Basics Assignment:
 
 __Note__ : Try this exercise with both managed and external tables. Drop these tables and see what is happening in HDFS at /user/hive/warehouse.
 
+Managed Tables
+===
+
 #### => Create managed tables (drivers, timesheet & truck_event based on CSV files)
 hive> CREATE TABLE drivers (driverId INT, name STRING, ssn STRING, loc STRING, certified STRING, wagePlan STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
 
@@ -105,4 +108,49 @@ hive> SELECT d.name, te.truckid, te.eventTime, te.eventType, te.routeName, te.ev
 
 #### => Query - Join 3 tables using a join statement and group by driver id and count rows
 hive> SELECT d.name, count(*) from drivers d INNER JOIN timesheet t ON (d.driverId = t.driverId) INNER JOIN truck_event te ON (d.driverId = te.driverId) group by d.name;
+
+External Tables
+===
+
+#### => Load data in HDFS
+$hadoop fs -mkdir /user/training/day_4/drivers
+
+$hadoop fs -put /home/training/Downloads/intellipaat_hadoop_training/day_4/driver_data/drivers.csv /user/training/day_4/drivers
+
+$hadoop fs -mkdir /user/training/day_4/timesheet
+
+$hadoop fs -put /home/training/Downloads/intellipaat_hadoop_training/day_4/driver_data/timesheet.csv /user/training/day_4/timesheet
+
+$hadoop fs -mkdir /user/training/day_4/truck_event
+
+$hadoop fs -put /home/training/Downloads/intellipaat_hadoop_training/day_4/driver_data/truck_event_text_partition.csv /user/training/day_4/truck_event
+
+#### => Create external tables (drivers_ext, timesheet_ext & truck_event_ext based on existing CSV files in HDFS)
+hive> CREATE EXTERNAL TABLE drivers_ext (driverId INT, name STRING, ssn STRING, loc STRING, certified STRING, wagePlan STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/day_4/drivers';
+
+hive> CREATE EXTERNAL TABLE timesheet_ext (driverId INT, week INT, hoursLogged INT, mileLogged INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/day_4/timesheet';
+
+hive> CREATE EXTERNAL TABLE truck_event_ext (driverId INT, truckId INT, eventTime STRING, eventType STRING, longitude DOUBLE, latitude DOUBLE, eventKey STRING, CorrelationId DOUBLE, driverName STRING, routeId BIGINT, routeName STRING,eventDate STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/day_4/truck_event';
+
+#### => Verify drivers table using HIVE shell
+hive> DESCRIBE EXTENDED drivers_ext;
+
+hive> DESCRIBE EXTENDED timesheet_ext;
+
+hive> DESCRIBE EXTENDED truck_event_ext;
+
+#### => Verify above created external tables should not be part of warehouse directory
+$hadoop fs -ls /user/hive/warehouse
+
+#### => Query - Join timesheet and drivers table to get total time logged per driver along with his name.
+hive> SELECT d.name, sum(t.hoursLogged) from drivers_ext d INNER JOIN timesheet_ext t ON (d.driverId = t.driverId) group by d.name;
+
+#### => Query - Join drivers and truck_event table to get total number of truck event participated by driver along with his name.
+hive> SELECT d.name, count(*) from drivers_ext d INNER JOIN truck_event_ext te ON (d.driverId = te.driverId) group by d.name;
+
+#### => Query - Join drivers and truck_event table to get truck event details participated by driver.
+hive> SELECT d.name, te.truckid, te.eventTime, te.eventType, te.routeName, te.eventDate from drivers_ext d INNER JOIN truck_event_ext te ON (d.driverId = te.driverId);
+
+#### => Query - Join 3 tables using a join statement and group by driver id and count rows
+hive> SELECT d.name, count(*) from drivers_ext d INNER JOIN timesheet_ext t ON (d.driverId = t.driverId) INNER JOIN truck_event_ext te ON (d.driverId = te.driverId) group by d.name;
 
