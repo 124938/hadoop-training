@@ -73,7 +73,7 @@ hive> CREATE TABLE timesheet (driverId INT, week INT, hoursLogged INT, mileLogge
 
 hive> CREATE TABLE truck_event (driverId INT, truckId INT, eventTime STRING, eventType STRING, longitude DOUBLE, latitude DOUBLE, eventKey STRING, CorrelationId DOUBLE, driverName STRING, routeId BIGINT, routeName STRING,eventDate STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
 
-#### => Verify drivers table using HIVE shell
+#### => Verify managed tables using HIVE shell
 hive> DESCRIBE drivers;
 
 hive> DESCRIBE timesheet;
@@ -132,7 +132,7 @@ hive> CREATE EXTERNAL TABLE timesheet_ext (driverId INT, week INT, hoursLogged I
 
 hive> CREATE EXTERNAL TABLE truck_event_ext (driverId INT, truckId INT, eventTime STRING, eventType STRING, longitude DOUBLE, latitude DOUBLE, eventKey STRING, CorrelationId DOUBLE, driverName STRING, routeId BIGINT, routeName STRING,eventDate STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/day_4/truck_event';
 
-#### => Verify drivers table using HIVE shell
+#### => Verify external tables using HIVE shell
 hive> DESCRIBE EXTENDED drivers_ext;
 
 hive> DESCRIBE EXTENDED timesheet_ext;
@@ -153,4 +153,23 @@ hive> SELECT d.name, te.truckid, te.eventTime, te.eventType, te.routeName, te.ev
 
 #### => Query - Join 3 tables using a join statement and group by driver id and count rows
 hive> SELECT d.name, count(*) from drivers_ext d INNER JOIN timesheet_ext t ON (d.driverId = t.driverId) INNER JOIN truck_event_ext te ON (d.driverId = te.driverId) group by d.name;
+
+Assignment : Clarification on External Tables
+===
+
+#### => Load employee data in HDFS
+$hadoop fs -mkdir /user/training/day_5/emp
+
+$hadoop fs -put /home/training/Downloads/intellipaat_hadoop_training/day_5/employees.csv /user/training/day_5/emp
+
+$hadoop fs -cat /user/training/day_5/emp/employees.csv
+
+#### => Create external tables
+hive> CREATE EXTERNAL TABLE employees_ext (age INT, name STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/day_5/emp';
+
+#### => Verify drivers table using HIVE shell
+hive> DESCRIBE EXTENDED employees_ext;
+
+#### => Query : Select data from external table
+hive> SELECT * FROM employees_ext;
 
