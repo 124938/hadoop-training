@@ -47,14 +47,21 @@ hive> FROM u_user INSERT OVERWRITE TABLE u_gender_sum SELECT u_user.gender, coun
 Assignment-1
 ========
 
-Hive Basics Assignment
+Hive Basics Assignment:
+
 1. Use driver_data.zip for this assignment
+
 2. Extract the zip file, it has 3 files drivers, timesheet, truck_event_text_partition
+
 3. Create table driver based on the headers provided in drivers file and remove headers from drivers file, repeat same with timesheet and truck_event_text_partition
+
 4. Load data into created tables
-5. Try this exercise with both managed and external tables. Drop these tables and see what is happening in HDFS at /user/hive/warehouse.
+
+5. Join timesheet and drivers and get total time logged per driver along with his name.
+
 6. Join 3 tables using a join statement and group by driver id and count rows
-7. Join timesheet and drivers and get total time logged per driver along with his name.
+
+__Note__ : Try this exercise with both managed and external tables. Drop these tables and see what is happening in HDFS at /user/hive/warehouse.
 
 #### => Create managed tables (drivers, timesheet & truck_event based on CSV files)
 hive> CREATE TABLE drivers (driverId INT, name STRING, ssn STRING, loc STRING, certified STRING, wagePlan STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
@@ -97,3 +104,5 @@ hive> SELECT d.name, count(*) from drivers d INNER JOIN truck_event te ON (d.dri
 hive> SELECT d.name, te.truckid, te.eventTime, te.eventType, te.routeName, te.eventDate from drivers d INNER JOIN truck_event te ON (d.driverId = te.driverId);
 
 #### => Query - Join 3 tables using a join statement and group by driver id and count rows
+hive> SELECT d.name, count(*) from drivers d INNER JOIN timesheet t ON (d.driverId = t.driverId) INNER JOIN truck_event te ON (d.driverId = te.driverId) group by d.name;
+
