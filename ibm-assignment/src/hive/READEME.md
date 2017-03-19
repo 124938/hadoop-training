@@ -9,9 +9,7 @@ hive> CREATE EXTERNAL TABLE TV_SHOW_CHANNEL (SHOW_NAME STRING, CHANNEL_NAME STRI
 hive> CREATE EXTERNAL TABLE TV_SHOW_VIEWER (SHOW_NAME STRING, VIEWER_NUM INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/training/ibm/tv/viewer';
 ```
 
-#### Problem Statement
-
-1. What is the total number of viewers for shows on ABC?
+#### 1. What is the total number of viewers for shows on ABC?
 
 
 Solution:
@@ -48,7 +46,8 @@ Answer:
 |Surreal_News	|50420	|
 |Surreal_Sports	|46834	|
 
-2. What is the number of viewers for the BAT channel?
+
+#### 2. What is the number of viewers for the BAT channel?
 
 
 Solution:
@@ -65,7 +64,7 @@ Answer:
 |BAT		|5099141	|
 
 
-3. What is the most viewed show on ABC channel?
+#### 3. What is the most viewed show on ABC channel?
 
 
 Solution:
@@ -82,7 +81,7 @@ Answer:
 |Hourly_Talking	|108163		|
 
 
-4. What are the aired shows on ZOO, NOX, ABC channels ?
+#### 4. What are the aired shows on ZOO, NOX, ABC channels ?
 
 
 
