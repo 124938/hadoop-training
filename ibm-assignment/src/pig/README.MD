@@ -24,9 +24,14 @@ tv_show_channel_viewer_group_order = ORDER tv_show_channel_viewer_group BY group
 
 result_1 = FOREACH tv_show_channel_viewer_group_order 
 		GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
+
+
 ```
 
 Result:
+
+| Show Name	|No. Of Viewers|
+|---------------|--------------|
 
 (Almost_Games,49237)
 (Almost_News,46592)
