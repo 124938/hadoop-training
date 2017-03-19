@@ -173,3 +173,15 @@ hive> DESCRIBE EXTENDED employees_ext;
 #### => Query : Select data from external table
 hive> SELECT * FROM employees_ext;
 
+
+Assignment-2
+========
+
+Use the same data given in Assignment-1:
+
+1. Create a UDF which reverses value of the column
+
+2. Try Partitioning and Data Indexing using timesheet.csv and then Join that table with drivers and get Total hours logged by each driver.
+
+3. Execute above hive commands using a script
+
