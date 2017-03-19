@@ -15,13 +15,18 @@ hive> CREATE EXTERNAL TABLE TV_SHOW_VIEWER (SHOW_NAME STRING, VIEWER_NUM INT) RO
 Solution:
 
 ```
-hive> SELECT * FROM TV_SHOW_CHANNEL c WHERE c.CHANNEL_NAME = 'ABC';
+hive> SELECT * 
+	FROM TV_SHOW_CHANNEL c 
+	WHERE c.CHANNEL_NAME = 'ABC';
 
-hive> SELECT c.SHOW_NAME, SUM(v.VIEWER_NUM) FROM TV_SHOW_CHANNEL c INNER JOIN TV_SHOW_VIEWER v ON (c.SHOW_NAME = v.SHOW_NAME) WHERE c.CHANNEL_NAME = 'ABC' GROUP BY c.SHOW_NAME;
+hive> SELECT c.SHOW_NAME, SUM(v.VIEWER_NUM) 
+	FROM TV_SHOW_CHANNEL c INNER JOIN TV_SHOW_VIEWER v ON (c.SHOW_NAME = v.SHOW_NAME) 
+	WHERE c.CHANNEL_NAME = 'ABC' 
+	GROUP BY c.SHOW_NAME;
 
 ```
 
-Answer:
+Result:
 
 | Show Name	|No. Of Viewers|
 |---------------|--------------|
@@ -57,7 +62,7 @@ hive> SELECT c.CHANNEL_NAME, SUM(v.VIEWER_NUM) FROM TV_SHOW_CHANNEL c INNER JOIN
 
 ```
 
-Answer:
+Result:
 
 | Channel Name	|No. Of Viewers|
 |---------------|--------------|
@@ -74,9 +79,9 @@ hive> SELECT c.SHOW_NAME, SUM(v.VIEWER_NUM) as VIEWER_COUNT FROM TV_SHOW_CHANNEL
 
 ```
 
-Answer:
+Result:
 
-| Channel Name	|No. Of Viewers|
+| Show Name	|No. Of Viewers|
 |---------------|--------------|
 |Hourly_Talking	|108163		|
 
