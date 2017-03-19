@@ -13,6 +13,7 @@ hive> CREATE EXTERNAL TABLE TV_SHOW_VIEWER (SHOW_NAME STRING, VIEWER_NUM INT) RO
 
 1. What is the total number of viewers for shows on ABC?
 
+
 Solution:
 
 ```
@@ -21,6 +22,8 @@ hive> SELECT * FROM TV_SHOW_CHANNEL c WHERE c.CHANNEL_NAME = 'ABC';
 hive> SELECT c.SHOW_NAME, SUM(v.VIEWER_NUM) FROM TV_SHOW_CHANNEL c INNER JOIN TV_SHOW_VIEWER v ON (c.SHOW_NAME = v.SHOW_NAME) WHERE c.CHANNEL_NAME = 'ABC' GROUP BY c.SHOW_NAME;
 
 ```
+
+Answer:
 
 | Show Name	|No. Of Viewers|
 |---------------|--------------|
@@ -63,6 +66,7 @@ Answer:
 
 
 3. What is the most viewed show on ABC channel?
+
 
 Solution:
 

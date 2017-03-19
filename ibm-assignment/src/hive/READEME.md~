@@ -22,6 +22,8 @@ hive> SELECT c.SHOW_NAME, SUM(v.VIEWER_NUM) FROM TV_SHOW_CHANNEL c INNER JOIN TV
 
 ```
 
+Answer:
+
 | Show Name	|No. Of Viewers|
 |---------------|--------------|
 |Almost_Games 	|49237	|
