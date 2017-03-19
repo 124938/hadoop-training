@@ -54,9 +54,13 @@ Result:
 Solution:
 
 ```
-tv_show_channel = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/channel/*.txt' USING PigStorage(',') as (show_name:chararray, channel_name:Chararray);
+tv_show_channel = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/channel/*.txt' 
+			USING PigStorage(',') 
+			as (show_name:chararray, channel_name:Chararray);
 
-tv_show_viewer = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/viewer/*.txt' USING PigStorage(',') as (show_name:chararray, viewer_num:int);
+tv_show_viewer = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/viewer/*.txt' 
+			USING PigStorage(',') 
+			as (show_name:chararray, viewer_num:int);
 
 tv_show_channel_filter = FILTER tv_show_channel by channel_name == 'BAT';
 
@@ -77,9 +81,13 @@ Answer:
 Solution:
 
 ```
-tv_show_channel = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/channel/*.txt' USING PigStorage(',') as (show_name:chararray, channel_name:Chararray);
+tv_show_channel = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/channel/*.txt' 
+			USING PigStorage(',') 
+			as (show_name:chararray, channel_name:Chararray);
 
-tv_show_viewer = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/viewer/*.txt' USING PigStorage(',') as (show_name:chararray, viewer_num:int);
+tv_show_viewer = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/tv/viewer/*.txt' 
+			USING PigStorage(',') 
+			as (show_name:chararray, viewer_num:int);
 
 tv_show_channel_filter = FILTER tv_show_channel by channel_name == 'ABC';
 

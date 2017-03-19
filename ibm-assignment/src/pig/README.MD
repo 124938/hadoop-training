@@ -22,7 +22,8 @@ tv_show_channel_viewer_group = GROUP tv_show_channel_viewer_join BY tv_show_chan
 
 tv_show_channel_viewer_group_order = ORDER tv_show_channel_viewer_group BY group;
 
-result_1 = FOREACH tv_show_channel_viewer_group_order GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
+result_1 = FOREACH tv_show_channel_viewer_group_order 
+		GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
 ```
 
 Result:
@@ -70,7 +71,8 @@ tv_show_channel_viewer_group = GROUP tv_show_channel_viewer_join BY tv_show_chan
 
 tv_show_channel_viewer_group_order = ORDER tv_show_channel_viewer_group BY group;
 
-result_1 = FOREACH tv_show_channel_viewer_group_order GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
+result_1 = FOREACH tv_show_channel_viewer_group_order 
+		GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
 ```
 
 Answer:
@@ -97,7 +99,8 @@ tv_show_channel_viewer_group = GROUP tv_show_channel_viewer_join BY tv_show_chan
 
 tv_show_channel_viewer_group_order = ORDER tv_show_channel_viewer_group BY group;
 
-result_int_1 = FOREACH tv_show_channel_viewer_group_order GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
+result_int_1 = FOREACH tv_show_channel_viewer_group_order 
+		GENERATE group, SUM(tv_show_channel_viewer_join.tv_show_viewer::viewer_num);
 
 result_int_2 = ORDER result_int_1 by $1 DESC;
 
