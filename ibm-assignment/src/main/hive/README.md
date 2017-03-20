@@ -4,13 +4,13 @@ HIVE Solution
 #### Create external tables
 
 ```
-hive -f ./ddl.sql'
+hive -f ./ddl.sql
 ```
 
 #### 1. What is the total number of viewers for shows on ABC?
 
 ```
-hive -f './q1_solution.sql'
+hive -f './q1_solution.sql
 ```
 
 #### 2. What is the number of viewers for the BAT channel?
