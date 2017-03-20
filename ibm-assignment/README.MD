@@ -1,5 +1,5 @@
 
-Project Information:
+Project Abstract
 =======
 
 The project aims to display show-to-channel relationship is Many-to-Many. In other words, each show might appear on many channels, and each channel might broadcast many shows. The description of the data is as below :
