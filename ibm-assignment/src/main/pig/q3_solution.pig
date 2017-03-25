@@ -8,7 +8,9 @@ tv_show_viewer = LOAD '/home/training/Downloads/intellipaat_hadoop_training/ibm/
 			USING PigStorage(',') 
 			as (show_name:chararray, viewer_num:int);
 
-tv_show_channel_filter = FILTER tv_show_channel by channel_name == 'ABC';
+tv_show_channel_distinct = DISTINCT tv_show_channel;
+
+tv_show_channel_filter = FILTER tv_show_channel_distinct BY channel_name == 'ABC';
 
 tv_show_channel_viewer_join = JOIN tv_show_channel_filter BY show_name, tv_show_viewer BY show_name;
 
@@ -21,7 +23,7 @@ result_int_1 = FOREACH tv_show_channel_viewer_group_order
 
 result_int_2 = ORDER result_int_1 by $1 DESC;
 
-result = LIMIT result_int_2 BY 1;
+result = LIMIT result_int_2 1;
 
 DUMP result;
 
