@@ -20,3 +20,5 @@ The project aims to display show-to-channel relationship is Many-to-Many. In oth
 
 ###### The above problems has to solved using MapReduce paradigm, Hive and pig programming constructs and codes should be shared.
 
+:)
+
