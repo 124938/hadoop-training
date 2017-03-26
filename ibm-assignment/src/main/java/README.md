@@ -5,7 +5,7 @@ Map-Reduce Solution
 
 Command:
 
-`java com.ibm.assignment.hadoop.tv.q1.Q1Driver /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/viewer/*.txt /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/channel/*.txt  /home/shrey/my_work/hadoop-training/ibm-assignment/output/q1`
+>java com.ibm.assignment.hadoop.tv.q1.Q1Driver /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/viewer/*.txt /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/channel/*.txt  /home/shrey/my_work/hadoop-training/ibm-assignment/output/q1
 		
 Result :
 
