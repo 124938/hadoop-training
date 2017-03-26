@@ -52,34 +52,35 @@ public class Q2Driver extends Configured implements Tool {
 	    Path firstJobOutputPath = new Path(allArgs[2] + File.separator + System.currentTimeMillis());
 	    FileOutputFormat.setOutputPath(firstJob, firstJobOutputPath);
 	    boolean status = firstJob.waitForCompletion(true);
-	    /*if (status) {
-	        return 0;
-	    } else {
-	        return 1;
-	    }*/
 	    
-	    Job secondJob = Job.getInstance(getConf());
-	    secondJob.setJarByClass(Q2Driver.class);
-	                               
-	    secondJob.setInputFormatClass(TextInputFormat.class);
-	    secondJob.setOutputFormatClass(TextOutputFormat.class);
-	    
-	    secondJob.setMapperClass(Q2SecondMapper.class);
-	    secondJob.setMapOutputKeyClass(Text.class);
-	    secondJob.setMapOutputValueClass(IntWritable.class);
-	    
-	    FileInputFormat.addInputPath(secondJob, firstJobOutputPath);
-	    
-	    secondJob.setReducerClass(Q2SecondReducer.class);
-	    secondJob.setOutputKeyClass(Text.class);
-	    secondJob.setOutputValueClass(IntWritable.class);
-	                               
-	    FileOutputFormat.setOutputPath(secondJob, new Path(allArgs[2] + File.separator + System.currentTimeMillis()));
-	    status = secondJob.waitForCompletion(true);
+	    // If first job is success then fire second job
 	    if (status) {
-	        return 0;
+	    
+		    Job secondJob = Job.getInstance(getConf());
+		    secondJob.setJarByClass(Q2Driver.class);
+		                               
+		    secondJob.setInputFormatClass(TextInputFormat.class);
+		    secondJob.setOutputFormatClass(TextOutputFormat.class);
+		    
+		    secondJob.setMapperClass(Q2SecondMapper.class);
+		    secondJob.setMapOutputKeyClass(Text.class);
+		    secondJob.setMapOutputValueClass(IntWritable.class);
+		    
+		    FileInputFormat.addInputPath(secondJob, firstJobOutputPath);
+		    
+		    secondJob.setReducerClass(Q2SecondReducer.class);
+		    secondJob.setOutputKeyClass(NullWritable.class);
+		    secondJob.setOutputValueClass(Text.class);
+		                               
+		    FileOutputFormat.setOutputPath(secondJob, new Path(allArgs[2] + File.separator + System.currentTimeMillis()));
+		    status = secondJob.waitForCompletion(true);
+		    if (status) {
+		        return 0;
+		    } else {
+		        return 1;
+		    }
 	    } else {
-	        return 1;
+	    	return 1;
 	    }
 	}
 	

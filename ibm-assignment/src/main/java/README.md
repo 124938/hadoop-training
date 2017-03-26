@@ -49,7 +49,7 @@ Result :
 	part-r-0000
 	============
 	
-	BAT	3031762
+	BAT 3031762
 	```	
 
 #### 3. What is the most viewed show on ABC channel?
