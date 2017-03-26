@@ -34,8 +34,6 @@ Result :
 	ABC PostModern_News 50021
 	ABC Surreal_News 50420
 	ABC Surreal_Sports 46834
-
-	
 	```
 	
 #### 2. What is the number of viewers for the BAT channel?
@@ -52,7 +50,6 @@ Result :
 	============
 	
 	BAT	3031762
-	
 	```	
 
 #### 3. What is the most viewed show on ABC channel?
