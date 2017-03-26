@@ -2,7 +2,7 @@ package com.ibm.assignment.hadoop.tv.q1;
 
 import java.io.IOException;
 
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -14,13 +14,14 @@ import com.ibm.assignment.hadoop.tv.ShowDataRecord;
 import com.ibm.assignment.hadoop.tv.ShowKey;
 import com.ibm.assignment.hadoop.tv.ViewerDataRecord;
 
-public class Q1Reducer extends Reducer<ShowKey, JoinGenericWritable, Text, IntWritable> {
+public class Q1Reducer extends Reducer<ShowKey, JoinGenericWritable, NullWritable, Text> {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Q1Reducer.class);
 
 	@Override
-	protected void reduce(ShowKey key, Iterable<JoinGenericWritable> values, Reducer<ShowKey, JoinGenericWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
+	protected void reduce(ShowKey key, Iterable<JoinGenericWritable> values, Reducer<ShowKey, JoinGenericWritable, NullWritable, Text>.Context context) throws IOException, InterruptedException {
 		
+		String channelName = null;
 		String showName = null;
 		int showWiseNumberOfViewers = 0;
 		
@@ -29,6 +30,7 @@ public class Q1Reducer extends Reducer<ShowKey, JoinGenericWritable, Text, IntWr
             
             if (key.getRecordType().equals(ShowKey.SHOW_RECORD)){
                 ShowDataRecord showNameDataRecord = (ShowDataRecord) record;
+                channelName = showNameDataRecord.getChannelName().toString();
                 showName = showNameDataRecord.getShowName().toString();
             } else {
                 ViewerDataRecord viewerDataRecord = (ViewerDataRecord) record;
@@ -36,8 +38,8 @@ public class Q1Reducer extends Reducer<ShowKey, JoinGenericWritable, Text, IntWr
             }
         }
 		
-		if (showName != null) {
-			context.write(new Text(showName), new IntWritable(showWiseNumberOfViewers));
+		if (showName != null && channelName != null) {
+			context.write(NullWritable.get(), new Text(channelName + " " + showName + " " + showWiseNumberOfViewers));
 		} else {
 			LOGGER.warn("Mapper does not contain any record with show name -> {}", key.getName());
 		}
