@@ -35,12 +35,24 @@ Result :
 	Surreal_News	50420
 	Surreal_Sports	46834
 	
-	```	
+	```
+	
 #### 2. What is the number of viewers for the BAT channel?
 
-```
-TODO
-```
+Command:
+
+>java com.ibm.assignment.hadoop.tv.q2.Q2Driver /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/viewer/*.txt /home/shrey/my_work/hadoop-training/ibm-assignment/data/tv/channel/*.txt  /home/shrey/my_work/hadoop-training/ibm-assignment/output/q2
+		
+Result :
+
+	```
+	============
+	part-r-0000
+	============
+	
+	BAT	3031762
+	
+	```	
 
 #### 3. What is the most viewed show on ABC channel?
 
