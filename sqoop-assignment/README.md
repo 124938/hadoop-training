@@ -57,15 +57,15 @@ Assignment-1
 
 Import cities table from MySQL to HDFS
 
-`$sqoop import \ 
-	--connect jdbc:mysql://localhost/sqoop_db \ 
-	--username sqoop \
-	--password sqoop \
-	--table cities \
-	--num-mappers 1 \
-	--target-dir /user/cloudera/sqoop_test/cities \ 
+$sqoop import
+	--connect jdbc:mysql://localhost/sqoop_db 
+	--username sqoop 
+	--password sqoop 
+	--table cities 
+	--num-mappers 1 
+	--target-dir /user/cloudera/sqoop_test/cities 
 	--where "1=1" \
-	--map-column-java id=Long` 
+	--map-column-java id=Long
 
 Assignment-2
 ========
