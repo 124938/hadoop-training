@@ -2,7 +2,8 @@
 
 sqoop job \
 --create visits \
--- import \
+-- \
+import \
 --connect jdbc:mysql://localhost/sqoop_db \
 --username sqoop \
 --password sqoop \
