@@ -1,0 +1,13 @@
+####### Import only new recors from MySQL to HDFS
+
+sqoop import \
+--connect jdbc:mysql://localhost/sqoop_db \
+--username sqoop \
+--password sqoop \
+--table visits \
+--incremental append \
+--check-column id \
+--last-value 1 \
+--target-dir /user/cloudera/sqoop_test/incremental-append-visits
+ 
+

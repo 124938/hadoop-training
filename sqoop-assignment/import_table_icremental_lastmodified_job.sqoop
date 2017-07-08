@@ -1,0 +1,20 @@
+####### Create JOB to move data from MySQL to HDFS
+
+sqoop job \
+--create visits \
+-- import \
+--connect jdbc:mysql://localhost/sqoop_db \
+--username sqoop \
+--password sqoop \
+--table visits \
+--incremental lastmodified \
+--check-column last_update_date \
+--last-value "1997-05-22 01:01:01" \
+--merge-key id \
+--target-dir /user/cloudera/sqoop_test/incremental-lastmodified-visits-job
+
+####### Execute job
+
+sqoop job \
+--exec visits
+
