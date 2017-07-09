@@ -2,20 +2,15 @@
 Assignments
 ========
 
-* Sqoop import table examples
+* Sqoop import (from MySQL to HDFS)
+- table
+- incremental support
+- query support
+- all tables
 
-* Sqoop import table examples with incremental approach
-
-* Sqoop import using query examples
-
-* Sqoop import all tables examples
-
-* Sqoop export table examples
-
-* Sqoop export table examples using batch
-
-* Sqoop export table examples using staging
-
-* Sqoop export table examples with incremental approach
+* Sqoop export (from HDFS to MySQL)
+- batch support
+- All or Nothing sematics support
+- Updating existing dataset
 
 
