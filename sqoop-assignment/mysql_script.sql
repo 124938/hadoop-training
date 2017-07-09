@@ -27,6 +27,13 @@ INSERT INTO `cities`(`id`, `country`, `city`) VALUES (2, "Czech Republic", "Brno
 INSERT INTO `cities`(`id`, `country`, `city`) VALUES (3, "USA", "Sunnyvale");
 
 CREATE TABLE `staging_cities` LIKE `cities`;
+CREATE TABLE `export_cities` LIKE `cities`;
+CREATE TABLE `export_using_batch_cities` LIKE `cities`;
+CREATE TABLE `export_using_multiple_rows_cities` LIKE `cities`;
+CREATE TABLE `export_using_transaction_cities` LIKE `cities`;
+CREATE TABLE `export_all_nothing_cities` LIKE `cities`;
+CREATE TABLE `export_update_cities` LIKE `cities`;
+
 
 CREATE TABLE `countries` (`country_id` INTEGER UNSIGNED NOT NULL, `country` VARCHAR(50), PRIMARY KEY (`country_id`));
 
